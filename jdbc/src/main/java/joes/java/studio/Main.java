@@ -8,6 +8,10 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.util.Assert;
@@ -45,6 +49,16 @@ public class Main {
         };
     }
 
+    @Bean
+    ApplicationRunner pagination (CustomerRepository repo) {
+        return args -> {
+            Sort sort = Sort.by(Sort.Direction.ASC, "name");
+            Pageable pageable = PageRequest.of(0, 2, sort);
+            Page<Customer> page = repo.findAll(pageable);
+            System.out.println(page.getContent());
+        };
+    }
+
 }
 
 @Table("customer_orders")
@@ -56,6 +70,8 @@ record Profile(@Id Integer id, String username, String password) {}
 record Customer(@Id Integer id, String name, Profile p, Set<Order> orders) {}
 interface CustomerRepository extends ListCrudRepository<Customer, Integer> {
     String CUSTOMER_CACHE_NAME = "customer";
+
+    Page<Customer> findAll(Pageable pageable);
 
     @Override
     @Cacheable(CUSTOMER_CACHE_NAME)

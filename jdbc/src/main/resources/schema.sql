@@ -18,7 +18,10 @@ create table if not exists customer_profile (
     password    text not null
 );
 
---insert into customer (id, name) values (1, 'A');
---delete from customer_profile;
---delete from customer_orders;
---delete from customer;
+delete from customer_profile;
+delete from customer_orders;
+delete from customer;
+
+insert into customer (id, name) values (2, 'Chris');
+insert into customer (id, name) values (1, 'Alex');
+insert into customer (id, name) values (3, 'Bob');
