@@ -15,8 +15,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.util.Assert;
-
-import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 
@@ -28,7 +26,7 @@ public class Main {
     }
 
     @Bean
-    ApplicationRunner applicationRunner (CustomerRepository repo) {
+    ApplicationRunner applicationRunner(CustomerRepository repo) {
         return args -> {
             Set<Order> set = Set.of(new Order(null, "order1"), new Order(null, "order2"));
             Profile p = new Profile(null, "user", "password");
@@ -50,7 +48,7 @@ public class Main {
     }
 
     @Bean
-    ApplicationRunner pagination (CustomerRepository repo) {
+    ApplicationRunner pagination(CustomerRepository repo) {
         return args -> {
             Sort sort = Sort.by(Sort.Direction.ASC, "name");
             Pageable pageable = PageRequest.of(0, 2, sort);
