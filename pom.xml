@@ -17,7 +17,8 @@
     <modules>
         <module>jdbc</module>
 		<module>datasources</module>
-	</modules>
+        <module>web</module>
+    </modules>
     <properties>
 		<java.version>21</java.version>
 	</properties>
