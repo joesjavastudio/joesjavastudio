@@ -32,4 +32,27 @@ public class PostService {
                 .retrieve()
                 .body(Post.class);
     }
+
+    Post findById(int id) {
+        return restClient.get()
+                .uri("/posts/{id}", id)
+                .retrieve()
+                .body(Post.class);
+
+    }
+
+    Post update(Post post, int id) {
+        return restClient.put()
+                .uri("/posts/{id}", id)
+                .body(post)
+                .retrieve()
+                .body(Post.class);
+    }
+
+    void delete(int id) {
+        restClient.delete()
+                .uri("/posts/{id}", id)
+                .retrieve()
+                .toBodilessEntity();
+    }
 }

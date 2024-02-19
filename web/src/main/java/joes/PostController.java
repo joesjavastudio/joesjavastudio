@@ -16,7 +16,7 @@ public class PostController {
     }
 
     @GetMapping("")
-    ResponseEntity<List<Post>> findall() {
+    ResponseEntity<List<Post>> findAll() {
         return postService.findAll();
     }
 
@@ -24,6 +24,27 @@ public class PostController {
     @ResponseStatus(HttpStatus.CREATED)
     Post create(@RequestBody Post post) {
         return postService.create(post);
+    }
+
+    @GetMapping("findById")
+    Post findById(@RequestParam(name="id") Integer postId) {
+        return postService.findById(postId);
+    }
+
+    @PutMapping("")
+    Post update(@RequestBody Post post, @RequestParam Integer id) {
+        return postService.update(post, id);
+    }
+
+    @DeleteMapping("")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void delete(@RequestParam Integer id) {
+        postService.delete(id);
+    }
+
+    @GetMapping("test")
+    void test(@RequestParam List<String> id) {
+        System.out.println(id);
     }
 
 }
