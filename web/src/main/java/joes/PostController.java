@@ -5,6 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/posts")
@@ -24,6 +26,24 @@ public class PostController {
     @ResponseStatus(HttpStatus.CREATED)
     Post create(@RequestBody Post post) {
         return postService.create(post);
+    }
+
+    @GetMapping("/{id}")
+    Post findByPathVariableId(@PathVariable("id") Integer postId) {
+        return postService.findById(postId);
+    }
+
+    @GetMapping("/{id}/{name}")
+    String findByIdAndName(@PathVariable Map<String, String> pathVariableMap) {
+        return pathVariableMap.toString();
+    }
+
+    @GetMapping(value = {"/optional", "/optional/{id}"})
+    String returnOptionalId(@PathVariable Optional<Integer> id) {
+        int resultId = 0;
+        if(id.isPresent())
+            resultId = id.get();
+        return "ID: " + resultId;
     }
 
     @GetMapping("findById")
