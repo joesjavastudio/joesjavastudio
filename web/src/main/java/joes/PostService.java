@@ -1,9 +1,11 @@
 package joes;
 
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -37,6 +39,13 @@ public class PostService {
         return restClient.get()
                 .uri("/posts/{id}", id)
                 .retrieve()
+                .onStatus(
+                        httpStatusCode -> httpStatusCode.value() == 404,
+                        ((request,response) -> {
+                            throw new ResponseStatusException(HttpStatusCode.valueOf(404),
+                                    "id is invalid");
+                        })
+                )
                 .body(Post.class);
 
     }
