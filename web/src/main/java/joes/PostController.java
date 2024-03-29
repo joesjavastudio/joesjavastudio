@@ -11,14 +11,14 @@ import java.util.Optional;
 @RestController
 @RequestMapping("api/posts")
 public class PostController {
-    private final PostService postService;
+    private final PostServiceInterface postService;
 
-    public PostController(PostService postService) {
+    public PostController(PostServiceInterface postService) {
         this.postService = postService;
     }
 
     @GetMapping("")
-    ResponseEntity<List<Post>> findAll() {
+    List<Post> findAll() {
         return postService.findAll();
     }
 
