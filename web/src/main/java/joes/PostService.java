@@ -13,8 +13,8 @@ public class PostService {
 
     private final RestClient restClient;
 
-    public PostService() {
-        restClient = RestClient.builder()
+    public PostService(RestClient.Builder builder) {
+        restClient = builder
                 .baseUrl("https://jsonplaceholder.typicode.com")
                 .build();
     }

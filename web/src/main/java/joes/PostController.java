@@ -11,9 +11,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("api/posts")
 public class PostController {
-    private final PostServiceInterface postService;
+    private final PostService postService;
 
-    public PostController(PostServiceInterface postService) {
+    public PostController(PostService postService) {
         this.postService = postService;
     }
 
