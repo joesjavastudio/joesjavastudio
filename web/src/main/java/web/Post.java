@@ -1,4 +1,4 @@
-package joes;
+package web;
 
 public record Post(
         Integer userId,

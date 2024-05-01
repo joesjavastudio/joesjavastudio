@@ -18,7 +18,9 @@
         <module>jdbc</module>
 		<module>datasources</module>
         <module>web</module>
-    </modules>
+        <module>comments-web</module>
+		<module>cloud-gateway</module>
+	</modules>
     <properties>
 		<java.version>21</java.version>
 	</properties>

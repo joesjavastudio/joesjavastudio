@@ -1,4 +1,4 @@
-package joes;
+package web;
 
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpStatusCode;
