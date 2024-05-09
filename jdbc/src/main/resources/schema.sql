@@ -1,7 +1,13 @@
+
+drop table if exists customer_orders;
+drop table if exists customer_profile;
+drop table if exists customer;
+
 create table if not exists customer
 (
     id      serial primary key,
-    name    text
+    name    text,
+    version serial
 );
 
 create table if not exists customer_orders
@@ -21,7 +27,3 @@ create table if not exists customer_profile (
 delete from customer_profile;
 delete from customer_orders;
 delete from customer;
-
-insert into customer (id, name) values (2, 'Chris');
-insert into customer (id, name) values (1, 'Alex');
-insert into customer (id, name) values (3, 'Bob');
